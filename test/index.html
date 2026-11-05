@@ -39,12 +39,12 @@ async def custom_site():
     # unpack filesystem from compressed archive into work dir
     if platform.window.location.host.find('.itch.zone')>0:
         import zipfile
-        async with platform.fopen("wheels_and_bones.apk?v=8a5c6ef83e", "rb") as archive:
+        async with platform.fopen("wheels_and_bones.apk?v=06aec2e180", "rb") as archive:
             with zipfile.ZipFile(archive) as zip_ref:
                 zip_ref.extractall(appdir.as_posix())
     else:
         import tarfile
-        async with platform.fopen("wheels_and_bones.tar.gz?v=6136ab216e", "rb") as archive:
+        async with platform.fopen("wheels_and_bones.tar.gz?v=287e021c7a", "rb") as archive:
             tar = tarfile.open(fileobj=archive, mode="r:gz")
             tar.extractall(path=appdir.as_posix(), filter='tar')
             tar.close()
