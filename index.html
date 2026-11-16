@@ -39,12 +39,12 @@ async def custom_site():
     # unpack filesystem from compressed archive into work dir
     if platform.window.location.host.find('.itch.zone')>0:
         import zipfile
-        async with platform.fopen("wheels_and_bones.apk?v=1a03dcef29", "rb") as archive:
+        async with platform.fopen("wheels_and_bones.apk?v=4e932b0d9a", "rb") as archive:
             with zipfile.ZipFile(archive) as zip_ref:
                 zip_ref.extractall(appdir.as_posix())
     else:
         import tarfile
-        async with platform.fopen("wheels_and_bones.tar.gz?v=29ce4cdad9", "rb") as archive:
+        async with platform.fopen("wheels_and_bones.tar.gz?v=1e0ea9bfa6", "rb") as archive:
             tar = tarfile.open(fileobj=archive, mode="r:gz")
             tar.extractall(path=appdir.as_posix(), filter='tar')
             tar.close()
@@ -288,6 +288,9 @@ function show_infobox() {
 
 
 <style id="wnb-splash-css">
+  /* телефон: тап по надписи страницы не выделяет текст и не вызывает панель поиска Chrome («Touch to Search») */
+  html, body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+  input, textarea { -webkit-user-select: text; user-select: text; }
   #wnb-splash { position: fixed; inset: 0; z-index: 999995; pointer-events: none; display: flex; flex-direction: column;
     align-items: center; justify-content: flex-end; padding-bottom: 7vh; box-sizing: border-box;
     background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(10,8,14,.72) 100%), #1d1b24 url(splash.jpg) center / cover no-repeat;
@@ -304,7 +307,7 @@ function show_infobox() {
 </style>
 <script id="wnb-goatcounter" data-goatcounter="https://wheelsandbones.goatcounter.com/count" data-goatcounter-settings='{"allow_frame": true}' async src="//gc.zgo.at/count.js"></script></head>
 
-<body><div id="wnb-splash"><div class="t">Wheels &amp; Bones</div><div class="s">Loading the workshop… about 14 MB, usually 20–40 seconds. Nothing to install — the game runs right here in your browser.</div><progress id="wnb-sp-bar" max="100" value="0"></progress><div class="m" id="wnb-sp-msg">Downloading…</div></div><script>(function(){var sp=document.getElementById("wnb-splash");function tick(){if(window.wnbState){sp.style.opacity="0";setTimeout(function(){sp.remove();},800);return;}var p=document.getElementById("progress"),st=document.getElementById("status"),ib=document.getElementById("infobox"),bar=document.getElementById("wnb-sp-bar"),msg=document.getElementById("wnb-sp-msg");if(p&&p.max&&p.value>0){bar.max=p.max;bar.value=p.value;}else{bar.removeAttribute("value");}var txt=(ib&&ib.offsetParent!==null&&ib.innerText)||(st&&st.innerText)||"";if(/Ready/i.test(txt)){txt="Ready — click or tap anywhere to start";bar.max=100;bar.value=100;}if(txt)msg.textContent=txt;setTimeout(tick,250);}tick();})();</script>
+<body><div id="wnb-splash"><div class="t">Wheels &amp; Bones</div><div class="s">Loading the workshop… about 14 MB, usually 20–40 seconds. Nothing to install — the game runs right here in your browser.</div><progress id="wnb-sp-bar" max="100" value="0"></progress><div class="m" id="wnb-sp-msg">Downloading…</div></div><script>(function(){var sp=document.getElementById("wnb-splash");function tick(){if(window.wnbState){sp.style.opacity="0";setTimeout(function(){sp.remove();},800);return;}var p=document.getElementById("progress"),st=document.getElementById("status"),ib=document.getElementById("infobox"),bar=document.getElementById("wnb-sp-bar"),msg=document.getElementById("wnb-sp-msg");if(p&&p.max&&p.value>0){bar.max=p.max;bar.value=p.value;}else{bar.removeAttribute("value");}var txt=(ib&&ib.offsetParent!==null&&ib.innerText)||(st&&st.innerText)||"";if(/Ready/i.test(txt)){txt="Ready — click or tap anywhere to start";bar.max=100;bar.value=100;}if(txt)msg.textContent=txt;setTimeout(tick,250);}tick();})();</script><script id="wnb-fit">(function(){var key="",tries=0;function bad(){var c=document.getElementById("canvas");if(!c||!c.width||!c.height||!(parseFloat(c.style.width)>0))return false;var W=window.innerWidth,H=window.innerHeight,r=c.getBoundingClientRect();if(W<50||H<50)return false;return r.left<-2||r.top<-2||r.right>W+2||r.bottom>H+2||(r.width<W-3&&r.height<H-3);}function fit(){if(typeof window_resize!=="function")return;var k=window.innerWidth+"x"+window.innerHeight;if(k!==key){key=k;tries=0;}if(bad()&&tries<3){tries++;window.wnbFitFixed=(window.wnbFitFixed||0)+1;window_resize();}}setInterval(fit,500);["orientationchange","fullscreenchange","webkitfullscreenchange"].forEach(function(e){window.addEventListener(e,function(){key="";setTimeout(fit,350);setTimeout(fit,1200);});});if(window.visualViewport)visualViewport.addEventListener("resize",function(){setTimeout(fit,350);});})();</script>
 
     <div id="transfer" align=center>
 <!--        <div class="spinner" id='spinner'></div> -->
